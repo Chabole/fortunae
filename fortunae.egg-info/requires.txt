@@ -1,0 +1,5 @@
+pandas
+concurrent.futures
+BeautifulSoup
+requests
+json

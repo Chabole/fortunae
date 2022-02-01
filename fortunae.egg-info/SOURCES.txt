@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+fortunae/__init__.py
+fortunae/fortunae.py
+fortunae.egg-info/PKG-INFO
+fortunae.egg-info/SOURCES.txt
+fortunae.egg-info/dependency_links.txt
+fortunae.egg-info/requires.txt
+fortunae.egg-info/top_level.txt
