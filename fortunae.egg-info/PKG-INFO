@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: fortunae
-Version: 0.0.1
-Summary: Fortunae quer ser tornar uma biblioteca de análise financeira.
+Version: 0.0.4
+Summary: Fortunae quer ser tornar uma biblioteca de análise financeira. Importa indicadores fundamentalistas de ações e fundos
 Home-page: UNKNOWN
 Author: Arthur Chabole
 Author-email: <chabole.arthur@gmail.com>
 License: UNKNOWN
-Keywords: python,finance,money,invest,stocks,wall-street
+Keywords: python,finance,money,invest
 Platform: UNKNOWN
 Classifier: Development Status :: 1 - Planning
 Classifier: Intended Audience :: Developers
