@@ -1,1 +1,0 @@
-from fortunae.fortunae import * #get_stocks, get_fiis, br_stocks, br_fiis
