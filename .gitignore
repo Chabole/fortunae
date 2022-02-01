@@ -4,3 +4,5 @@
 *.pyos
 build
 dist
+fortunae.egg-info
+
