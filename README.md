@@ -1,5 +1,5 @@
 # fortunae
- Fortunae quer ser tornar uma biblioteca de análise financeira. Voltada pra importação de indicadores fundamentalistas de ações ou fundos imobiliarios usando multithreading. Usando a biblioteca `current.future` e `threads` para acelerar a coleta de dados automatizada e massiva.
+ Fortunae quer ser tornar uma biblioteca de análise financeira. Voltada pra importação de indicadores fundamentalistas de ações ou fundos imobiliarios usando multithreading. Usando a biblioteca `current.future` e `threads` para acelerar a coleta de dados automatizada e massiva. Funciona pra ativos brasileiros e estrangeiros.
 
 ## Download
 
@@ -22,7 +22,7 @@ Verificando indicadores fundamentalistas de ações
 ```python
 import fortunae as ft
 
-ações = ['mglu3', 'bbas3', 'cash3']
+ações = ['mglu3', 'bbas3', 'cash3', 'disb34']
 df_ações = ft.get_stocks(ações)
 ```
 O `df_ações` será um dataframe com os ativos e seus indicadores.
