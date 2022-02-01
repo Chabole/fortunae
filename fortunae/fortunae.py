@@ -4,22 +4,34 @@ import pandas as pd
 import concurrent.futures 
 import json
 
+'''
+Created on Tue  30 Jan 10:34:42 2022
+@author: Arthur Chabole
+
+contact: arthur.chabole@unesp.br
+contact: chabole.arthur@gmail.com
+
+__version__0.0.5
+__Release__01/01/2022
+
+'''
+
 def __connection_stocks(ATIVO):
     try:
         url = f'https://statusinvest.com.br/acoes/{ATIVO}'
         html = requests.get(url)
-        print(f'Sucesso no download ativo {ATIVO.upper()}')
+        print(f'Sucesso no download: ativo {ATIVO.upper()}')
     except:
-        print(f'Erro no download ativo {ATIVO.upper()}')
+        print(f'Erro no download: ativo {ATIVO.upper()}')
     return html
 
 def __connection_FIIs(ATIVO):
     try:
         url = f'https://statusinvest.com.br/fundos-imobiliarios/{ATIVO}'
         html = requests.get(url)
-        print(f'Sucesso no download no ativo {ATIVO.upper()}')
+        print(f'Sucesso no download: ativo {ATIVO.upper()}')
     except:
-        print(f'Erro no download no ativo {ATIVO.upper()}')
+        print(f'Erro no download: ativo {ATIVO.upper()}')
     return html
 
 def __format_num(num):
@@ -132,7 +144,7 @@ def get_stocks(ativos):
 
 def get_fiis(ativos):
     '''
-    Carrega os dados financeiros do fundo imobiliario.
+    Carrega os dados financeiros de fundos imobiliarios.
     
     Parameters
     -----------
@@ -184,7 +196,7 @@ fiis = ft.br_fiis()    #250 fundos
 
 #Scraping dados usando threads
 df_ações = ft.get_stocks(ações)
-df_fiis = ft.get_FIIs(fiis)
+df_fiis = ft.get_fiis(fiis)
 
 #Gravando os resultados
 with pd.ExcelWriter('outputs.xlsx') as writer:  
