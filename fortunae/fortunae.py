@@ -12,7 +12,7 @@ contact: arthur.chabole@unesp.br
 contact: chabole.arthur@gmail.com
 
 __version__0.0.5
-__Release__01/01/2022
+__Release__31/01/2022
 
 '''
 
