@@ -1,6 +1,6 @@
-* .pyc
-* .txt
-* .pyc
-* .pyos
-* build/
-* dist/
+*.pyc
+*.txt
+*.pyc
+*.pyos
+build
+dist
