@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
+from pathlib import Path
 
-VERSION = '0.0.4'
-DESCRIPTION = 'Fortunae quer ser tornar uma biblioteca de análise financeira. Importa indicadores fundamentalistas de ações e fundos'
-LONG_DESCRIPTION = ' Fortunae quer ser tornar uma biblioteca de análise financeira. Voltada pra importação de indicadores fundamentalistas atuais de ações ou fundos imobiliarios usando multithreading.'
+this_directory = Path(__file__).parent
+
+VERSION = '0.0.6'
+DESCRIPTION = 'Fortunae quer ser tornar uma biblioteca de análise financeira. Indicada para importar indicadores fundamentalistas de ações e fundos'
+LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
 # Setting up
 setup(

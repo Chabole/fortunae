@@ -11,8 +11,8 @@ Created on Tue  30 Jan 10:34:42 2022
 contact: arthur.chabole@unesp.br
 contact: chabole.arthur@gmail.com
 
-__version__0.0.5
-__Release__31/01/2022
+__version__0.0.6
+__Release__01/02/2022
 
 '''
 
@@ -106,7 +106,6 @@ def __get_json(path):
     # Closing file
     file.close()
     return pd.DataFrame(tabela, columns=["Ativos"])
-
 
 def get_stocks(ativos):
     '''
