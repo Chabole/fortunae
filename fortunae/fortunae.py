@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 import concurrent.futures 
 import json
+from tqdm.contrib import tzip
+from tqdm.contrib.concurrent import thread_map
+
 
 '''
 Created on Tue  30 Jan 10:34:42 2022
@@ -11,27 +14,28 @@ Created on Tue  30 Jan 10:34:42 2022
 contact: arthur.chabole@unesp.br
 contact: chabole.arthur@gmail.com
 
-__version__0.0.6
+__version__0.0.7
 __Release__01/02/2022
 
 '''
 
 def __connection_stocks(ATIVO):
     try:
-        url = f'https://statusinvest.com.br/acoes/{ATIVO}'
+        if '34' in ATIVO: #BDRs
+            url = f'https://statusinvest.com.br/bdrs/{ATIVO}'
+        else: #ações em geral
+            url = f'https://statusinvest.com.br/acoes/{ATIVO}'
         html = requests.get(url)
-        print(f'Sucesso no download: ativo {ATIVO.upper()}')
     except:
-        print(f'Erro no download: ativo {ATIVO.upper()}')
+        pass
     return html
 
 def __connection_FIIs(ATIVO):
     try:
         url = f'https://statusinvest.com.br/fundos-imobiliarios/{ATIVO}'
         html = requests.get(url)
-        print(f'Sucesso no download: ativo {ATIVO.upper()}')
     except:
-        print(f'Erro no download: ativo {ATIVO.upper()}')
+        pass
     return html
 
 def __format_num(num):
@@ -61,6 +65,8 @@ def __search_stocks(html, ATIVO):
 
     #Coletando dados de preço e adicionais
     new_conjunto = sopa.find_all(attrs={"info"}) #cada indicador
+
+
     dic = {}
     dic['Ativo'] = ATIVO.upper()
     for bloco in new_conjunto:
@@ -82,6 +88,12 @@ def __search_stocks(html, ATIVO):
 def __search_FIIs(html, ATIVO):
     sopa = bs(html.text, 'html.parser')
     conjunto = sopa.find_all(attrs={"info"}) #cada indicador
+
+    if conjunto == []:
+        print(f'Erro no download: ativo {ATIVO.upper()}', end="\r")
+    else:
+        print(f'Sucesso no download: ativo {ATIVO.upper()}', end="\r")
+
     dic = {}
     dic['Ativo'] = ATIVO.upper()
     for bloco in conjunto:
@@ -109,7 +121,7 @@ def __get_json(path):
 
 def get_stocks(ativos):
     '''
-    Carrega os dados financeiros de ações.
+    Carrega os dados financeiros de ações no brasil e BDR's .
     
     Parameters
     -----------
@@ -135,9 +147,9 @@ def get_stocks(ativos):
     '''
     tabela = []     
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = executor.map(__connection_stocks, ativos)
+        results = thread_map(__connection_stocks, ativos)
 
-        for result, ativo in zip(results, ativos):
+        for result, ativo in tzip(results, ativos):
             tabela.append(__search_stocks(result, ativo))
     return pd.DataFrame(tabela)
 
@@ -169,9 +181,10 @@ def get_fiis(ativos):
     '''
     tabela = []     
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = executor.map(__connection_FIIs, ativos)
+        #results = executor.map(__connection_FIIs, ativos)
+        results = thread_map(__connection_FIIs, ativos)
 
-        for result, ativo in zip(results, ativos):
+        for result, ativo in tzip(results, ativos):
             tabela.append(__search_FIIs(result, ativo))
     return pd.DataFrame(tabela)
 
@@ -182,6 +195,7 @@ def br_fiis():
     return __get_json('codigos_fiis.json').iloc[0:]['Ativos']
 
 # ----------------- EXEMPLO DE UTILIZAÇÃO ---------------
+
 '''
 import fortunae as ft
 import pandas as pd
