@@ -25,7 +25,7 @@ import fortunae as ft
 ações = ['mglu3', 'bbas3', 'cash3', 'disb34']
 df_ações = ft.get_stocks(ações)
 ```
-O `df_ações` será um dataframe com os ativos e seus indicadores.
+O `df_ações` será um dataframe com os ativos e seus indicadores. São identificados 43 indicadores fundamentalistas pra ações.
 
 ## Extraindo dados de fundos imobiliarios
 
@@ -37,7 +37,7 @@ import fortunae as ft
 fiis = ['hglg11', 'knri11', 'bcff11']
 df_fiis = ft.get_fiis(fiis)
 ```
-O `df_fiis` será um dataframe com os ativos e seus indicadores.
+O `df_fiis` será um dataframe com os ativos e seus indicadores. São identificados 23 indicadores fundamentalistas pra ações.
 
 ## Verificando lista de ativos
 Verificando lista de ações
