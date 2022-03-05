@@ -62,11 +62,8 @@ def __format_num(num):
 
 def __search_stocks(html, ATIVO):
     sopa = bs(html.text, 'html.parser')
-
     #Coletando dados de preço e adicionais
     new_conjunto = sopa.find_all(attrs={"info"}) #cada indicador
-
-
     dic = {}
     dic['Ativo'] = ATIVO.upper()
     for bloco in new_conjunto:
@@ -88,12 +85,6 @@ def __search_stocks(html, ATIVO):
 def __search_FIIs(html, ATIVO):
     sopa = bs(html.text, 'html.parser')
     conjunto = sopa.find_all(attrs={"info"}) #cada indicador
-
-    if conjunto == []:
-        print(f'Erro no download: ativo {ATIVO.upper()}', end="\r")
-    else:
-        print(f'Sucesso no download: ativo {ATIVO.upper()}', end="\r")
-
     dic = {}
     dic['Ativo'] = ATIVO.upper()
     for bloco in conjunto:
@@ -207,7 +198,7 @@ start = time.time()
 ações = ft.br_stocks() #473 ações
 fiis = ft.br_fiis()    #250 fundos
 
-#Scraping dados usando threads
+#Scraping dados dos ativos usando mult-threads
 df_ações = ft.get_stocks(ações)
 df_fiis = ft.get_fiis(fiis)
 
