@@ -53,7 +53,7 @@ import fortunae as ft
 ações_lista = ft.br_fiis()
 ```
 
-## Atualização massiva de ativos
+## Atualização de ativos
 
 ```python
 import fortunae as ft
@@ -79,6 +79,12 @@ print(f'Tempo de processamento gasto {(time.time() - start):.3f}s')
 ```
 Esse código percorre `473 ações` e `250 fundos imobiliarios` listadas na `B3` pegando informações de 
 preço e indicadores fundamentalistas. Após a coleta de dados concluida salva o arquivo em formato de planilha `.xlsx`. Esse operação dura em média `3min` e depende de conexão com a internet.
+
+#Exemplos do DataFrame `df_ações`
+
+![](df.png)
+![](plot1.png)
+![](plot2.png)
 
 ### Support ou contato
 
