@@ -80,11 +80,85 @@ print(f'Tempo de processamento gasto {(time.time() - start):.3f}s')
 Esse código percorre `473 ações` e `250 fundos imobiliarios` listadas na `B3` pegando informações de 
 preço e indicadores fundamentalistas. Após a coleta de dados concluida salva o arquivo em formato de planilha `.xlsx`. Esse operação dura em média `3min` e depende de conexão com a internet.
 
-#Exemplos do DataFrame `df_ações`
+## Exemplos do DataFrame `df_ações`
+Quando usar a função *get_stocks* ela retornará os indicadores de cada ativo informado em seu argumento em forma de um DataFrame. Assim, fica mais fácil executar análises, filtros e plotagem.
 
-![](df.png)
-![](plot1.png)
-![](plot2.png)
+![](imgs/df.PNG)
+
+## Exemplos - Visualizando os dados do DataFrame
+
+Com os dados do DataFrame agrupar por subsetor de atuação e visualizarmos como o `P/L` se distribui em cada setor.
+```python
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Filtrando dados
+df = pd.read_excel('outputs.xlsx', index_col=False)
+df = df[(df['VOLUME (dia)'] >=0.5e6) & (df['P/L']>0) & (df['P/L']<100)]
+
+#Plot
+sns.relplot(size="P/L", y="Subsetor de Atuação", hue="Setor de Atuação", x="D.Y",
+            sizes=(40, 400), alpha=.5, palette="Paired",
+            height=6, data=df[(df['D.Y'] > 0) & (df['D.Y'] < 50) & 
+                              (df['P/L'] > 0) & (df['P/L'] < 50)])
+```
+
+![](imgs/plot1.png)
+
+Pode-se também fazer um histograma pra verificar como o `ROE` de distribuiu de acordo com cada setor de atuação.
+```python
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Filtrando dados
+df = pd.read_excel('outputs.xlsx', index_col=False)
+df = df[(df['VOLUME (dia)'] >=0.5e6) & (df['P/L']>0) & (df['P/L']<100)]
+
+fig, ax = plt.subplots()
+sns.kdeplot(
+   data=df, x="ROE", hue="Setor de Atuação",
+   fill=True, common_norm=False, palette="Spectral", multiple="stack",
+   alpha=.5, linewidth=0,
+)
+ax.grid(linestyle='dotted')
+ax.set_xlim(-5, 50)
+```
+
+![](imgs/plot2.png)
+
+Ou fazer um histograma pra verificar como o `P/L` de distribuiu de acordo com cada setor de atuação.
+```python
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Filtrando dados
+df = pd.read_excel('outputs.xlsx', index_col=False)
+df = df[(df['VOLUME (dia)'] >=0.5e6) & (df['P/L']>0) & (df['P/L']<100)]
+
+fig, ax = plt.subplots()
+
+sns.kdeplot(
+   data=df, x="P/L", hue="Setor de Atuação",
+   fill=True, common_norm=False, palette="Spectral", multiple="stack",
+   alpha=.5, linewidth=0,
+)
+
+ax.grid(linestyle='dotted')
+ax.set_xlim(-5, 50)
+
+```
+
+![](imgs/plot3.png)
+
 
 ### Support ou contato
 
