@@ -1,5 +1,5 @@
 # fortunae
- Fortunae quer ser tornar uma biblioteca de análise financeira. Voltada pra importação de indicadores fundamentalistas de ações ou fundos imobiliarios usando multithreading. Usando a biblioteca `current.future` e `threads` para acelerar a coleta de dados automatizada e massiva. Funciona pra ativos brasileiros e estrangeiros.
+ Fortunae quer ser tornar uma biblioteca de análise financeira. Voltada pra importação de indicadores fundamentalistas de ações ou fundos imobiliarios usando multithreading. Usando a biblioteca `threads` para acelerar a coleta de dados automatizada e massiva. Funciona pra ativos brasileiros e BDR's.
 
 ## Download
 
