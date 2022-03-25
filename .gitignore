@@ -2,6 +2,7 @@
 *.txt
 *.pyc
 *.pyos
+*.vscode
 build
 dist
 fortunae.egg-info
